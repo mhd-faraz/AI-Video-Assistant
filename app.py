@@ -336,7 +336,22 @@ with st.sidebar:
     st.markdown("---")
 
     st.markdown('<span class="badge badge-purple">Input</span>', unsafe_allow_html=True)
-    source = st.text_input("YouTube URL or File Path", placeholder="https://youtube.com/watch?v=... or /path/to/file.mp4")
+
+    input_method = st.radio("Input Method", ["YouTube URL", "Upload File"], horizontal=True)
+
+    if input_method == "YouTube URL":
+        source = st.text_input("YouTube URL", placeholder="https://youtube.com/watch?v=...")
+    else:
+        uploaded_file = st.file_uploader("Upload audio/video file", type=["mp4", "mp3", "wav", "m4a"])
+        if uploaded_file is not None:
+            import os
+            os.makedirs("uploads", exist_ok=True)
+            temp_path = os.path.join("uploads", uploaded_file.name)
+            with open(temp_path, "wb") as f:
+                f.write(uploaded_file.getbuffer())
+            source = temp_path
+        else:
+            source = None
 
     language = st.selectbox("Language", ["english", "hinglish"], index=0)
 
@@ -362,8 +377,8 @@ st.markdown("---")
 
 # ── Run Pipeline ────────────────────────────────────────────────────────────────
 if run_btn:
-    if not source.strip():
-        st.error("Please enter a YouTube URL or file path.")
+    if not source or not source.strip():
+        st.error("Please enter a YouTube URL or upload a file.")
     else:
         st.session_state.pipeline_done = False
         st.session_state.result = None
@@ -540,6 +555,7 @@ else:
         <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
             <span class="badge badge-purple">Transcription</span>
             <span class="badge badge-cyan">Summarisation</span>
+            <span class="badge badge-green">RAG Chat">
             <span class="badge badge-green">RAG Chat</span>
         </div>
     </div>""", unsafe_allow_html=True)
