@@ -1,0 +1,30 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+*.egg-info/
+
+# ChromaDB local storage
+chroma_db/
+*.sqlite3
+
+# OS files
+.DS_Store
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Logs
+*.log
+
+# Temp audio/video files
+*.mp3
+*.wav
+*.mp4
+temp/
+vector_db/
+downloades/
