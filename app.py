@@ -342,13 +342,20 @@ with st.sidebar:
     if input_method == "YouTube URL":
         source = st.text_input("YouTube URL", placeholder="https://youtube.com/watch?v=...")
     else:
-        uploaded_file = st.file_uploader("Upload audio/video file", type=["mp4", "mp3", "wav", "m4a"])
+        uploaded_file = st.file_uploader("Upload audio/video file", type=["mp4", "mov", "mp3", "wav", "m4a", "avi", "mkv"])
         if uploaded_file is not None:
             import os
-            os.makedirs("uploads", exist_ok=True)
-            temp_path = os.path.join("uploads", uploaded_file.name)
+            import tempfile
+            
+            # Use temp directory that works reliably on Render
+            temp_dir = tempfile.gettempdir()
+            temp_path = os.path.join(temp_dir, uploaded_file.name)
+            
+            # Write file to temp location
             with open(temp_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
+            
+            st.success(f"✅ File uploaded: {uploaded_file.name}")
             source = temp_path
         else:
             source = None
@@ -550,12 +557,11 @@ else:
             Ready to Analyse
         </div>
         <div style="color:var(--text-muted);font-size:0.85rem;max-width:380px;line-height:1.7">
-            Paste a YouTube URL or local file path in the sidebar, choose your language, and hit <strong>Analyse</strong> to get started.
+            Paste a YouTube URL or upload your audio/video file in the sidebar, choose your language, and hit <strong>Analyse</strong> to get started.
         </div>
         <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
             <span class="badge badge-purple">Transcription</span>
             <span class="badge badge-cyan">Summarisation</span>
-            <span class="badge badge-green">RAG Chat">
             <span class="badge badge-green">RAG Chat</span>
         </div>
     </div>""", unsafe_allow_html=True)
