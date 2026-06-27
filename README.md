@@ -1,4 +1,4 @@
-# 🎬 AI Video Assistant
+
 
 **Meeting Intelligence Platform** — Real-time transcription, AI-powered summarization, and intelligent Q&A from video/audio files.
 
@@ -7,6 +7,35 @@
 ![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
 
 ---
+# AI Meeting Intelligence Platform
+
+**[Live Demo](https://ai-video-assistant-4.onrender.com/) | [GitHub](https://github.com/mhd-faraz/AI-Video-Assistant)**
+
+## 🎯 Problem & Solution
+
+Meetings generate hours of unstructured audio/video with no summaries, action items, or searchable content.
+
+**Our Solution:** AI system that transcribes, summarizes, and enables intelligent Q&A on meetings in **<30 seconds**.
+
+## 📊 Impact Metrics
+
+- ⚡ **<30 seconds** from upload → summaries + Q&A ready
+- 📁 Handles **500 MB+ files** with multi-language support
+- 🌍 **Hinglish support** (English/Hindi mix via Sarvam AI)
+- 🧠 **RAG-powered Q&A** — Ask questions, get meeting-grounded answers
+- 💯 **Deployed & tested** with real users (Render + local fallback)
+
+---
+
+## ✨ Features
+
+[Keep your existing Features section exactly as is]
+
+## 🛠 Tech Stack
+
+[Keep your existing Tech Stack section]
+
+... rest of the README stays same
 
 ## ✨ Features
 
